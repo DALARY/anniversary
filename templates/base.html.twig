@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Anniversaire{% endblock %}</title>
+        <link href="{{ asset('css/base.css')}}" rel="stylesheet">
+        {% block stylesheets %}
+        {% endblock %}
+    </head>
+    <body>
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <header id="connect">
+                <div>
+                    <p>Bonjour, {{ app.user.email }}</p>
+                    <h1>Anniversaire</h1>
+                    <a href="{{ path('app_logout')}}"><span>Déconnexion</span></a>
+                </div>
+            </header>
+        {% else %}
+            <header id="disconnect">
+                <div>
+                    <h1>Anniversaire</h1>
+                </div>
+            </header>
+            <h1 id="title_connect">Bonjour, veuillez à vous connecté pour lister les dates d'anniversaires</h1>
+            <div id="sign">
+                <button><a href="{{ path('app_login')}}">Se Connecter</a></button>
+                <button><a href="{{ path('app_register')}}">S'inscrire</a></button>
+            </div>
+        {% endif %}
+
+    {% block body %}
+        
+    {% endblock %}
+    </body>
+</html>

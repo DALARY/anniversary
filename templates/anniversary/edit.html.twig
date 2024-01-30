@@ -1,0 +1,20 @@
+{% extends "base.html.twig" %}
+{% block stylesheets %}
+    <link href="{{ asset('css/form.css')}}" rel="stylesheet">
+{% endblock %}
+{% block body %}
+<main>
+    <h1>Modifier la date d'anniversaire</h1>
+    {{ form_start(form) }}
+        {{ form_row(form.lastname) }}
+        {{ form_row(form.firstname) }}
+        {{ form_row(form.date) }}
+        <div>
+            {{ form_row(form.submit) }}
+            <div>
+                <button><a href="{{ path('app_anniversary') }}">Annuler</a></button>
+            </div>
+        </div>
+    {{ form_end(form) }}
+</main>
+{% endblock %}

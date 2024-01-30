@@ -1,0 +1,27 @@
+{% block stylesheets %}
+    <link href="{{ asset('css/base.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/form.css')}}" rel="stylesheet">
+{% endblock %}
+{% block body %}
+    <header id="disconnect">
+        <div>
+            <h1>Anniversaire</h1>
+        </div>
+    </header>
+    <h1>Inscription</h1>
+    {{ form_errors(registrationForm) }}
+
+    {{ form_start(registrationForm, {'attr': {'id': 'registration_form'}}) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Mot de Passe'
+        }) }}
+        {{ form_row(registrationForm.agreeTerms, {
+            label: 'Acceptez les termes'
+        }) }}
+        <div>
+            <button type="submit" class="btn">S'inscrire</button>
+            <button><a href="{{ path('app_anniversary') }}">Annuler</a></button>
+        </div>       
+    {{ form_end(registrationForm) }}
+{% endblock %}

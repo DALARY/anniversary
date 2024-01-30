@@ -1,0 +1,51 @@
+main {
+  margin: 5%;
+}
+button {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #007BA7;
+  color: #fbfbfb;
+  border: none;
+  border-radius: 4px;
+  margin-bottom: 2%;
+  font-size: 13pt;
+  float: right;
+}
+button:hover {
+  background-color: #4DA8DA;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12pt;
+}
+table > thead {
+  background-color: #113558;
+  color: #fbfbfb;
+}
+table > thead > tr > th {
+  padding: 30px;
+}
+table > tbody {
+  text-align: center;
+}
+table > tbody > tr:nth-child(even) {
+  background-color: #4682B4;
+  color: #fbfbfb;
+}
+table > tbody > tr:nth-child(odd) {
+  background-color: #5A8EAD;
+  color: #fbfbfb;
+}
+table > tbody > tr > td {
+  padding: 20px;
+}
+table > tbody > tr > td:nth-of-type(4) > a:hover {
+  color: #3f4449;
+  cursor: pointer;
+}
+table > tbody > tr > td:nth-of-type(5) > a:hover {
+  color: #d9534f;
+  cursor: pointer;
+}

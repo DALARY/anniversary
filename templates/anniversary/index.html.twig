@@ -1,0 +1,34 @@
+{% extends "base.html.twig" %}
+{% block stylesheets %}
+    <link href="{{ asset('css/index.css')}}" rel="stylesheet">
+{% endblock %}
+{% block body %}
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <main>
+            <h1>Liste des anniversaires</h1>
+            <button><a href="{{ path('app_anniversary_add') }}">Ajouter une date d'anniversaire</a></button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Date</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for anniversarys in anniversary %}
+                    <tr>
+                        <td>{{anniversarys.firstname}}</td>
+                        <td>{{anniversarys.lastname}}</td>
+                        <td>{{anniversarys.date|date('d-m-Y')}}</td>
+                        <td><a href="{{ path('app_anniversary_edit', {'id': anniversarys.id}) }}">Modifier</a></td>
+                        <td><a href="{{ path('app_anniversary_delete', {'id': anniversarys.id}) }}">Supprimer</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </main>
+    {% endif %}
+{% endblock %}

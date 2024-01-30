@@ -1,0 +1,74 @@
+/* Form Register */
+#registration_form > div > ul > li {
+  color: #d9534f;
+}
+#registration_form > div:nth-last-child(3) {
+  display: initial;
+  text-align: center;
+  margin-bottom: 15px;
+}
+#registration_form > div:nth-last-child(3) > input {
+  width: auto;
+  margin-left: 1%;
+}
+#registration_form > div:nth-last-child(2) > button:nth-of-type(1) {
+  margin-right: 2%;
+}
+
+/* Form Login */
+.alert {
+  margin-bottom: 15px;
+}
+.mb-3 > button {
+  background-color: #d9534f;
+  margin-bottom: 15px;
+}
+.mb-3 > button:hover {
+  background-color: #dd6965;
+}
+#connect_form > div:nth-last-of-type(1) {
+  margin-top: 15px;
+}
+#connect_form > div:nth-last-of-type(1) > button:nth-of-type(1) {
+  margin-right: 2%;
+}
+
+
+/* Form Ajout / Edit */
+form {
+  display: flex;
+  flex-direction: column;
+}
+form > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+form > div > input {
+  margin: 15px 0 15px 0;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 20%;
+}
+form > div:nth-last-child(2) {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+form > div:nth-last-child(2) > div {
+  margin: 1%;
+}
+button {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #007ba7;
+  color: #fbfbfb;
+  border: none;
+  border-radius: 4px;
+  font-size: 13pt;
+}
+button:hover {
+  background-color: #4da8da;
+}
