@@ -20,8 +20,8 @@
                 <tbody>
                 {% for anniversarys in anniversary %}
                     <tr>
-                        <td>{{anniversarys.firstname}}</td>
                         <td>{{anniversarys.lastname}}</td>
+                        <td>{{anniversarys.firstname}}</td>
                         <td>{{anniversarys.date|date('d-m-Y')}}</td>
                         <td><a href="{{ path('app_anniversary_edit', {'id': anniversarys.id}) }}">Modifier</a></td>
                         <td><a href="{{ path('app_anniversary_delete', {'id': anniversarys.id}) }}">Supprimer</a></td>
