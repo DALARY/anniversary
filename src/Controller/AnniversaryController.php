@@ -17,7 +17,7 @@ class AnniversaryController extends AbstractController
     public function index(ManagerRegistry $doctrine): Response
     {
         $user = $this->getUser();
-        $anniversary = $doctrine->getRepository(Anniversary::class)->findBy(['user' => $user]);
+        $anniversary = $doctrine->getRepository(Anniversary::class)->findBy(['user' => $user], ['date' => 'ASC']);
         return $this->render('anniversary/index.html.twig', [
             'controller_name' => 'AnniversaryController',
             'anniversary' => $anniversary,

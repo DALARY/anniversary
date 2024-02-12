@@ -3,7 +3,7 @@
     <link href="{{ asset('css/index.css')}}" rel="stylesheet">
 {% endblock %}
 {% block body %}
-    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    {% if is_granted('IS_AUTHENTICATED_FULLY') or is_granted('IS_AUTHENTICATED_REMEMBERED')%}
         <main>
             <h1>Liste des anniversaires</h1>
             <button><a href="{{ path('app_anniversary_add') }}">Ajouter une date d'anniversaire</a></button>
@@ -23,8 +23,8 @@
                         <td>{{anniversarys.lastname}}</td>
                         <td>{{anniversarys.firstname}}</td>
                         <td>{{anniversarys.date|date('d-m-Y')}}</td>
-                        <td><a href="{{ path('app_anniversary_edit', {'id': anniversarys.id}) }}">Modifier</a></td>
-                        <td><a href="{{ path('app_anniversary_delete', {'id': anniversarys.id}) }}">Supprimer</a></td>
+                        <td><a href="{{ path('app_anniversary_edit', {'id': anniversarys.id}) }}"><i class="fa-regular fa-pen-to-square"></i></a></td>
+                        <td><a href="{{ path('app_anniversary_delete', {'id': anniversarys.id}) }}"><i class="fa-solid fa-trash-arrow-up"></i></a></td>
                     </tr>
                     {% endfor %}
                 </tbody>
