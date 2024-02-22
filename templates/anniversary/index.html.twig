@@ -5,6 +5,11 @@
 {% block body %}
     {% if is_granted('IS_AUTHENTICATED_FULLY') or is_granted('IS_AUTHENTICATED_REMEMBERED')%}
         <main>
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success fade-out">
+                    {{ message }}
+                </div>
+            {% endfor %} 
             <h1>Liste des anniversaires</h1>
             <div id="btn_soon_add">
                 <button><a href="{{ path('app_anniversary_soon') }}">Afficher les prochains anniversaires</a></button>

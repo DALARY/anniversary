@@ -74,6 +74,12 @@ class AnniversaryController extends AbstractController
 
             $manager->persist($anniversary);
             $manager->flush();
+
+            $this->addFlash(
+                'success',
+                'Anniversaire ajouter !'
+            );
+
             return $this->redirectToRoute('app_anniversary');
         }
 
@@ -104,6 +110,12 @@ class AnniversaryController extends AbstractController
 
             $manager->persist($anniversary);
             $manager->flush();
+
+            $this->addFlash(
+                'success',
+                'Anniversaire modifier !'
+            );
+
             return $this->redirectToRoute('app_anniversary');
         }
 

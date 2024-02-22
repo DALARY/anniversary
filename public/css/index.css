@@ -9,7 +9,7 @@ main {
 button {
   padding: 10px;
   cursor: pointer;
-  background-color: #007BA7;
+  background-color: #007ba7;
   color: #fbfbfb;
   border: none;
   border-radius: 4px;
@@ -18,7 +18,7 @@ button {
   float: right;
 }
 button:hover {
-  background-color: #4DA8DA;
+  background-color: #4da8da;
 }
 table {
   width: 100%;
@@ -36,11 +36,11 @@ table > tbody {
   text-align: center;
 }
 table > tbody > tr:nth-child(even) {
-  background-color: #4682B4;
+  background-color: #4682b4;
   color: #fbfbfb;
 }
 table > tbody > tr:nth-child(odd) {
-  background-color: #5A8EAD;
+  background-color: #5a8ead;
   color: #fbfbfb;
 }
 table > tbody > tr > td {
@@ -53,4 +53,33 @@ table > tbody > tr > td:nth-of-type(4) > a:hover {
 table > tbody > tr > td:nth-of-type(5) > a:hover {
   color: #d9534f;
   cursor: pointer;
+}
+
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.alert-success {
+  background-color: #d4edda; /* couleur verte */
+  border-color: #c3e6cb;
+  color: #155724;
+}
+
+.fade-out {
+  animation: fadeOut 5s ease forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+    display: none;
+  }
 }
