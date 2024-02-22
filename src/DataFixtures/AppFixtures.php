@@ -20,10 +20,10 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        
+
         $lastname = ['Martin', 'Dupont', 'Leroy', 'Dubois', 'Laurent', 'Lambert', 'Girard', 'Moreau', 'Lefevre', 'Lemoine'];
         $firstname = ['Lea', 'Hugo', 'Emma', 'Gabriel', 'Chloe', 'Louis', 'Manon', 'Nathan', 'Camille', 'Ethan'];
-        $date = ['1988-03-15', '1995-11-7', '1979-09-22', '2002-01-03', '1990-07-12', '1985-04-05', '1998-12-18', '1973-05-09', '1982-05-27', '1991-10-14'];
+        $date = ['1988-03-15', '1995-11-7', '1979-09-22', '2002-03-03', '1990-02-28', '1985-04-05', '1998-12-18', '1973-03-09', '1982-05-27', '1991-10-14'];
         $users = [];
 
         $emailList = ['admin@admin', 'aa@aa'];
@@ -46,6 +46,11 @@ class AppFixtures extends Fixture
             $anniversary->setFirstname($firstname[array_rand($firstname)]);
             $anniversaryDate = new DateTime($date[array_rand($date)]);
             $anniversary->setDate($anniversaryDate);
+
+            // Calculer la dateYears
+            $currentDate = new DateTime();
+            $currentYear = $currentDate->format('Y');
+            $anniversary->setDateYears(new DateTime("$currentYear-{$anniversaryDate->format('m-d')}"));
 
             // Sélectionnez un utilisateur aléatoire parmi ceux créés précédemment
             $randomUserReference = 'user_' . $emailList[array_rand($emailList)];

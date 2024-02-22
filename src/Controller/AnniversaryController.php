@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Anniversary;
 use App\Form\AnniversaryFormType;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -24,6 +25,30 @@ class AnniversaryController extends AbstractController
         ]);
     }
 
+    #[Route('/prochain_anniversaire', name: 'app_anniversary_soon')]
+    public function soon(ManagerRegistry $doctrine): Response
+    {
+        $user = $this->getUser();
+
+        // Récupérer la date actuelle
+        $currentDate = new DateTime();
+        // Ajouter 40 jours à la date actuelle
+        $currentDate->modify('+40 days');
+
+        // Récupérer les anniversaires avec dateYears dans les 40 prochains jours
+        $entityManager = $doctrine->getManager();
+        $query = $entityManager->createQuery('SELECT a FROM App\Entity\Anniversary a WHERE a.user = :user AND a.dateYears BETWEEN :startDate AND :endDate ORDER BY a.dateYears ASC')
+            ->setParameter('user', $user)
+            ->setParameter('startDate', new DateTime())
+            ->setParameter('endDate', $currentDate);
+
+        $anniversary = $query->getResult();
+        return $this->render('anniversary/soon.html.twig', [
+            'controller_name' => 'AnniversaryController',
+            'anniversary' => $anniversary,
+        ]);
+    }
+
     #[Route('/ajout', name: 'app_anniversary_add')]
     public function ajout(Request $request, EntityManagerInterface $manager): Response
     {
@@ -31,10 +56,20 @@ class AnniversaryController extends AbstractController
         $form = $this->createForm(AnniversaryFormType::class, $anniversary);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) { 
+        if ($form->isSubmitted() && $form->isValid()) {
             $anniversary->setLastname($form['lastname']->getData());
             $anniversary->setFirstname($form['firstname']->getData());
-            $anniversary->setDate($form['date']->getData());
+            $dateAnniversary = $form['date']->getData();
+
+            // Récupérer la date du formulaire
+            $dateAnniversary = $form['date']->getData();
+
+            // Extraire l'année actuelle
+            $currentYear = (int) date('Y');
+
+            // Mettre à jour la propriété dateYears avec l'année actuelle
+            $anniversary->setDateYears(new DateTime("$currentYear-{$dateAnniversary->format('m-d')}"));
+            $anniversary->setDate($dateAnniversary);
             $anniversary->setUser($this->getUser());
 
             $manager->persist($anniversary);
@@ -55,10 +90,16 @@ class AnniversaryController extends AbstractController
         $form = $this->createForm(AnniversaryFormType::class, $anniversary);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $anniversary->setLastname($form['lastname']->getData());
             $anniversary->setFirstname($form['firstname']->getData());
             $anniversary->setDate($form['date']->getData());
+            // Récupérer la date actuelle
+            $currentDate = new DateTime();
+            // Extraire l'année actuelle
+            $currentYear = $currentDate->format('Y');
+            // Mettre à jour la propriété dateYears avec l'année actuelle
+            $anniversary->setDateYears(new DateTime("$currentYear-{$form['date']->getData()->format('m-d')}"));
             $anniversary->setUser($this->getUser());
 
             $manager->persist($anniversary);

@@ -5,11 +5,8 @@
 {% block body %}
     {% if is_granted('IS_AUTHENTICATED_FULLY') or is_granted('IS_AUTHENTICATED_REMEMBERED')%}
         <main>
-            <h1>Liste des anniversaires</h1>
-            <div id="btn_soon_add">
-                <button><a href="{{ path('app_anniversary_soon') }}">Afficher les prochains anniversaires</a></button>
-                <button><a href="{{ path('app_anniversary_add') }}">Ajouter une date d'anniversaire</a></button>
-            </div>
+            <h1>Liste des prochains anniversaires</h1>
+            <button><a href="{{ path('app_anniversary') }}">Retour</a></button>
             <table>
                 <thead>
                     <tr>
@@ -17,8 +14,6 @@
                         <th>Prénom</th>
                         <th>Date</th>
                         <th>Prochain anniversaire</th>
-                        <th></th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,8 +23,6 @@
                         <td>{{anniversarys.firstname}}</td>
                         <td>{{anniversarys.date|date('d-m-Y')}}</td>
                         <td>{{anniversarys.dateYears|date('d-m-Y')}}</td>
-                        <td><a href="{{ path('app_anniversary_edit', {'id': anniversarys.id}) }}"><i class="fa-regular fa-pen-to-square"></i></a></td>
-                        <td><a href="{{ path('app_anniversary_delete', {'id': anniversarys.id}) }}"><i class="fa-solid fa-trash-arrow-up"></i></a></td>
                     </tr>
                     {% endfor %}
                 </tbody>

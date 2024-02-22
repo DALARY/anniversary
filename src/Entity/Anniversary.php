@@ -26,6 +26,9 @@ class Anniversary
     #[ORM\ManyToOne(inversedBy: 'anniversary')]
     private ?User $user;
 
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $dateYears = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +78,18 @@ class Anniversary
     public function setUser(?User $user): static
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getDateYears(): ?\DateTimeInterface
+    {
+        return $this->dateYears;
+    }
+
+    public function setDateYears(\DateTimeInterface $dateYears): static
+    {
+        $this->dateYears = $dateYears;
 
         return $this;
     }

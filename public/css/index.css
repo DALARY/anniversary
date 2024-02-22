@@ -1,6 +1,11 @@
 main {
   margin: 5%;
 }
+#btn_soon_add {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 button {
   padding: 10px;
   cursor: pointer;
